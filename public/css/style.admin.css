@@ -35,26 +35,58 @@
 
 .card-login-form {
     width: 600px;
+    height: 400px;
     background-color: white;
-    padding: 1.5rem 2rem;
     border-radius: var(--card-border);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: start;
 }
 
-.card-login-form img {
-    width: 50px;
-    height: auto;
+.card-login-form .left-panel {
+    width: 300px;
+    height: 100%;
+    background-color: #E95D4C;
+    border-top-left-radius: var(--card-border);
+    border-bottom-left-radius: var(--card-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.left-panel img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.card-login-form .right-panel {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.75rem 1.5rem;
+}
+
 
 .form-login {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+}
+
+.form-login img {
+    width: 70px;
+    height: auto;
+    object-fit: cover;
+    object-position: center center;
 }
 
 .custom-form-control {

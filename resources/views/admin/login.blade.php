@@ -25,7 +25,17 @@
 <body>
 
 <div class="login-container">
-    <div class="card-login-form"></div>
+    <div class="card-login-form">
+        <div class="left-panel">
+            <img src="{{asset('/assets/images/login-bg.jpg')}}" alt="bg-image"/>
+        </div>
+        <div class="right-panel">
+            <div class="form-login">
+                <img src="{{ asset('/assets/images/logo.png') }}" alt="image-logo">
+                <p>FORM LOGIN</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
