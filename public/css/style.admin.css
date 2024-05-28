@@ -89,106 +89,30 @@
     object-position: center center;
 }
 
-.custom-form-control {
-    font-size: var(--font-small);
-    padding: 0.75rem 1rem;
+.form-login .title {
+    font-size: 0.8em;
     color: var(--dark);
-}
-
-.custom-form-control:focus {
-    box-shadow: none;
-    border-color: var(--dark-tint);
-}
-
-.custom-form-control::placeholder {
-    color: var(--dark-tint);
+    font-weight: 600;
 }
 
 .btn-login {
     background-color: var(--bg-primary);
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    color: var(--dark);
+    color: whitesmoke;
     width: fit-content;
     border: none;
     outline: none;
     font-size: 0.8em;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-weight: 600;
+    transition: all ease-in-out 200ms;
 }
 
 .btn-login:hover {
-    color: var(--dark);
+    color: whitesmoke;
     background-color: color-mix(in srgb, var(--bg-primary) 90%, black);
 }
-
-.text-group-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--light);
-    border-radius: 5px;
-    width: 100%;
-    transition: all ease-in-out 200ms;
-}
-
-.text-group-container:focus-within {
-    border-color: color-mix(in srgb, black 20%, var(--light));
-}
-
-.text-group-container:focus-within i {
-    color: var(--dark);
-}
-
-.text-group-container i {
-    color: var(--light);
-    margin-left: 0.5rem;
-    transition: all ease-in-out 200ms;
-}
-
-.text-group-input {
-    width: 100%;
-    padding: 0.75rem 0.75rem 0.75rem 0.5rem;
-    font-size: 0.8em;
-    border-radius: 5px;
-    color: var(--dark);
-    outline: none;
-    box-shadow: none;
-    border: none;
-}
-
-.text-group-input:focus {
-    outline: none;
-}
-
-.text-input {
-    width: 100%;
-    padding: 0.75rem 0.75rem;
-    font-size: 0.8em;
-    border-radius: 5px;
-    color: var(--dark);
-    outline: none;
-    box-shadow: none;
-    border: 1px solid var(--light);
-    transition: all ease-in-out 200ms;
-}
-
-.text-input:focus {
-    outline: none;
-    border-color: color-mix(in srgb, black 20%, var(--light));
-}
-
-.input-label {
-    font-size: 0.8em;
-    color: var(--dark);
-    font-weight: 600 !important;
-}
-
-.input-label-error {
-    font-size: 0.6em;
-    font-weight: 500;
-    color: var(--danger);
-}
-
 
 .custom-sidebar {
     background-color: white !important;

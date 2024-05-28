@@ -32,7 +32,22 @@
         <div class="right-panel">
             <div class="form-login">
                 <img src="{{ asset('/assets/images/logo.png') }}" alt="image-logo">
-                <p>FORM LOGIN</p>
+                <p class="title mb-3">FORM LOGIN ADMIN</p>
+                <label for="username" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-user'></i>
+                    <input type="text" placeholder="username" class="text-group-input" id="username"
+                           name="username">
+                </div>
+                <label for="password" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" placeholder="password" class="text-group-input"
+                           id="password" name="password">
+                </div>
+                <div class="w-100 d-flex justify-content-end align-items-center">
+                    <button type="submit" class="btn-login">Login</button>
+                </div>
             </div>
         </div>
     </div>

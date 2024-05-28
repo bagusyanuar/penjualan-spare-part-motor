@@ -1,5 +1,5 @@
 :root {
-    --bg-primary: #FFC107;
+    --bg-primary: #E95D4C;
     --bg-background: #F0F0F0;
     --dark: #353535;
     --dark-tint: #8f8f8f;
@@ -250,6 +250,7 @@ a.nav-brand img{
     outline: none;
     box-shadow: none;
     border: none;
+    line-height: 0 !important;
 }
 
 .text-group-input:focus {
