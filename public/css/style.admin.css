@@ -83,7 +83,7 @@
 }
 
 .form-login img {
-    width: 70px;
+    width: 65px;
     height: auto;
     object-fit: cover;
     object-position: center center;
@@ -126,6 +126,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .sidebar-brand {
@@ -162,13 +163,13 @@
 }
 
 .sidebar-item.active {
-    color: var(--dark) !important;
+    color: whitesmoke !important;
     background-color: var(--bg-primary) !important;
     box-shadow: none !important;
 }
 
 .sidebar-item:hover {
-    color: var(--dark) !important;
+    color: whitesmoke !important;
     background-color: var(--bg-primary) !important;
 }
 

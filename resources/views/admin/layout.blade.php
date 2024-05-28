@@ -25,8 +25,56 @@
     <title>Toko ISNA Motor | Halaman Admin</title>
     @yield('css')
 </head>
-<body>
-
+<body class="hold-transition sidebar-mini layout-fixed">
+<nav class="main-header navbar navbar-expand custom-navbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link navbar-link-item" data-widget="pushmenu" href="#" role="button">
+                <i class='bx bx-menu'></i>
+            </a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link navbar-link-item">Logout</a>
+        </li>
+    </ul>
+</nav>
+<aside class="main-sidebar sidebar-dark-primary custom-sidebar">
+    <div class="sidebar">
+        <div class="sidebar-brand-container">
+            <a href="#" class="sidebar-brand">
+                <img src="{{ asset('/assets/images/logo.png') }}" alt="brand-image">
+                <p class="color-dark">ISNA Motor</p>
+            </a>
+        </div>
+        <div class="sidebar-item-container">
+            <ul class="nav nav-sidebar nav-pills flex-column" style="gap: 0.25rem">
+                <li class="nav-item">
+                    <a href="{{ route('admin.dashboard') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
+                        <i class="bx bxs-dashboard"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                        <i class='bx bxs-component'></i>
+                        <p>Product</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/transaction*') ? 'active' : '' }}">
+                        <i class='bx bx-shopping-bag'></i>
+                        <p>Transaction</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
+
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 });

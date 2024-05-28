@@ -32,7 +32,7 @@
         <div class="right-panel">
             <div class="form-login">
                 <img src="{{ asset('/assets/images/logo.png') }}" alt="image-logo">
-                <p class="title mb-3">FORM LOGIN ADMIN</p>
+                <p class="title mb-2">FORM LOGIN ADMIN</p>
                 <label for="username" class="form-label d-none"></label>
                 <div class="text-group-container">
                     <i class='bx bx-user'></i>
