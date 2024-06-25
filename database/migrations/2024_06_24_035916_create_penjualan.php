@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('no_penjualan')->unique();
             $table->integer('sub_total')->default(0);
             $table->integer('ongkir')->default(0);
+            $table->integer('bunga')->default(0);
             $table->integer('total')->default(0);
+            $table->integer('dp')->default(0);
+            $table->integer('sisa')->default(0);
+            $table->integer('jumlah_angsuran')->default(0);
             $table->smallInteger('status')->default(0);
             $table->boolean('lunas')->default(false);
             $table->boolean('is_kirim')->default(false);

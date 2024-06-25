@@ -58,10 +58,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('admin.category') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/kategori*') ? 'active' : '' }}">
+                        <i class='bx bx-purchase-tag'></i>
+                        <p>Kategori</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.product') }}"
                        class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
                         <i class='bx bxs-component'></i>
                         <p>Product</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.setting-kredit') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/setting-kredit*') ? 'active' : '' }}">
+                        <i class='bx bx-cog'></i>
+                        <p>Setting Kredit</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -75,6 +89,10 @@
         </div>
     </div>
 </aside>
+
+<div class="content-wrapper p-4">
+    @yield('content')
+</div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
