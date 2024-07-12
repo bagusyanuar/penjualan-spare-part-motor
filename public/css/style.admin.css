@@ -34,8 +34,9 @@
 }
 
 .card-login-form {
-    width: 600px;
-    height: 400px;
+    width: 300px;
+    height: 280px;
+    padding: 1.75rem 2rem;
     background-color: white;
     border-radius: var(--card-border);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
@@ -43,34 +44,6 @@
     align-items: center;
     justify-content: start;
 }
-
-.card-login-form .left-panel {
-    width: 300px;
-    height: 100%;
-    background-color: #E95D4C;
-    border-top-left-radius: var(--card-border);
-    border-bottom-left-radius: var(--card-border);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.left-panel img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center center;
-}
-
-.card-login-form .right-panel {
-    width: 300px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.75rem 1.5rem;
-}
-
 
 .form-login {
     width: 100%;
@@ -83,7 +56,7 @@
 }
 
 .form-login img {
-    width: 70px;
+    width: 100px;
     height: auto;
     object-fit: cover;
     object-position: center center;
@@ -126,6 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .sidebar-brand {
@@ -135,9 +109,8 @@
 }
 
 .sidebar-brand img {
-    width: 40px;
+    width: 60px;
     height: auto;
-    margin-right: 0.5rem;
 }
 
 .sidebar-brand p {
@@ -162,14 +135,18 @@
 }
 
 .sidebar-item.active {
-    color: var(--dark) !important;
+    color: whitesmoke !important;
     background-color: var(--bg-primary) !important;
     box-shadow: none !important;
 }
 
 .sidebar-item:hover {
-    color: var(--dark) !important;
+    color: whitesmoke !important;
     background-color: var(--bg-primary) !important;
+}
+
+.sidebar-item p {
+    font-size: 0.9em;
 }
 
 .sidebar-item i {
@@ -182,7 +159,7 @@
 }
 
 .content-title {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: bold;
     color: var(--dark);
     margin-bottom: 0;
@@ -192,6 +169,8 @@
     font-size: 0.8em;
     color: var(--dark-tint);
 }
+
+
 
 .card-content {
     background-color: white;
@@ -220,7 +199,7 @@
     text-decoration: none;
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    color: var(--dark);
+    color: whitesmoke;
     width: fit-content;
     border: none;
     outline: none;
@@ -233,7 +212,7 @@
 }
 
 .btn-add:hover {
-    color: var(--dark);
+    color: whitesmoke;
     background-color: color-mix(in srgb, var(--bg-primary) 90%, white);
 }
 
@@ -246,48 +225,9 @@
     border-bottom: 1px solid var(--light);
 }
 
-.dataTables_wrapper {
-    font-size: 0.8em;
-}
 
-.dataTables_wrapper .pagination .page-link {
-    font-size: 1em;
-}
 
-.dataTables_wrapper .pagination .page-item.active .page-link {
-    background-color: var(--bg-primary);
-    border-color: var(--bg-primary);
-}
 
-.lazy-backdrop {
-    position: fixed;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-    cursor: pointer;
-}
-
-table.dataTable td.dt-control:before {
-    display: none !important;
-    color: rgba(0, 0, 0, 0.5);
-    content: "►";
-}
-
-.dt-control {
-    cursor: pointer;
-}
-
-.middle-header {
-    vertical-align: middle !important;
-}
 
 .box-product-image {
     width: 60px;
@@ -304,6 +244,7 @@ table.dataTable td.dt-control:before {
     height: 55px;
     object-fit: cover;
     object-position: center;
+    border-radius: 3px;
 }
 
 .btn-table-action-delete {
@@ -329,7 +270,7 @@ table.dataTable td.dt-control:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-primary);
+    background-color: var(--warning);
     color: var(--dark);
     text-decoration: none;
     border-radius: 4px;
@@ -338,4 +279,20 @@ table.dataTable td.dt-control:before {
 .btn-table-action-edit:hover {
     color: var(--dark);
     text-decoration: none;
+}
+
+.custom-tab-pills {
+    gap: 0.5rem !important;
+}
+
+.custom-tab-link {
+    border-radius: 10px !important;
+    font-size: 0.8em !important;
+    color: var(--bg-primary) !important;
+    border:  1px solid var(--bg-primary) !important;
+}
+
+.custom-tab-link.active{
+    background-color: var(--bg-primary) !important;
+    color: white !important;
 }

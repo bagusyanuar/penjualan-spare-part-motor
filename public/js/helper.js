@@ -18,7 +18,7 @@ function AlertConfirm(title = 'Apakah Anda Yakin?', text = 'Apa anda yakin melan
     Swal.fire({
         title: title,
         text: text,
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -125,4 +125,48 @@ function createEmptyProduct() {
     return '<div class="d-flex flex-column align-items-center justify-content-center" style="height: ' + 400 + 'px">' +
         '<div style="color: var(--dark); font-weight: 500;">Product Tidak Ditemukan...</div>' +
         '</div>';
+}
+
+async function BaseDeleteHandler(url, id) {
+    try {
+        await $.post(url);
+        Swal.fire({
+            title: 'Success',
+            text: 'Berhasil menghapus data...',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.reload();
+        })
+    }catch (e) {
+        let error_message = JSON.parse(e.responseText);
+        ErrorAlert('Error', error_message.message);
+    }
+}
+
+function eventQtyChange(max = 99, callback = function () {}) {
+    $('.qty-change').on('click', function (e) {
+        e.preventDefault();
+        let type = this.dataset.type;
+        qtyChangeHandler(type, max, function (newVal) {
+            callback(newVal)
+        })
+    })
+}
+
+function qtyChangeHandler(type, max, callback = function () {}) {
+    let qtyTargetEl = $('#qty-value');
+    let qtyTargetVal = qtyTargetEl.val();
+    let currentVal = parseInt(qtyTargetVal);
+    if (type === 'plus' && currentVal < max) {
+        let newVal = currentVal + 1;
+        qtyTargetEl.val(newVal);
+        callback(newVal);
+    }
+
+    if (type === 'minus' && currentVal > 1) {
+        let newVal = currentVal - 1;
+        qtyTargetEl.val(newVal);
+        callback(newVal);
+    }
 }
