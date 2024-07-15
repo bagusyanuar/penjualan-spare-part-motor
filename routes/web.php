@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
+    Route::match(['post', 'get'],'/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
