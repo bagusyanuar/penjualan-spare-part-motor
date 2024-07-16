@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\Customer\HomeController::class, 'index'])->name('customer.home');
 
 Route::group(['prefix' => 'admin'], function () {
 //    Route::match(['post', 'get'],'/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
