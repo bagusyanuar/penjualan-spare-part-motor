@@ -36,7 +36,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link navbar-link-item">Logout</a>
+            <a href="{{ route('admin.logout') }}" class="nav-link navbar-link-item">Logout</a>
         </li>
     </ul>
 </nav>
@@ -45,7 +45,7 @@
         <div class="sidebar-brand-container">
             <a href="#" class="sidebar-brand">
                 <img src="{{ asset('/assets/images/logo.png') }}" alt="brand-image">
-                <p class="color-dark">ISNA Motor</p>
+                <p class="color-dark ms-2" style="color: var(--bg-primary);">ISNA MOTOR</p>
             </a>
         </div>
         <div class="sidebar-item-container">
@@ -55,6 +55,13 @@
                        class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
                         <i class="bx bxs-dashboard"></i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.pengguna') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/pengguna*') ? 'active' : '' }}">
+                        <i class='bx bx-user'></i>
+                        <p>Pengguna</p>
                     </a>
                 </li>
                 <li class="nav-item">

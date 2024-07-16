@@ -23,13 +23,27 @@
     <title>Halaman Login Admin</title>
 </head>
 <body>
-
+@if (\Illuminate\Support\Facades\Session::has('failed'))
+    <script>
+        Swal.fire("Ooops", '{{ \Illuminate\Support\Facades\Session::get('failed') }}', "error")
+    </script>
+@endif
+@if (\Illuminate\Support\Facades\Session::has('success'))
+    <script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ \Illuminate\Support\Facades\Session::get('success') }}',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.href = '/';
+        })
+    </script>
+@endif
 <div class="login-container">
     <div class="card-login-form">
-        <div class="left-panel">
-            <img src="{{asset('/assets/images/login-bg.jpg')}}" alt="bg-image"/>
-        </div>
-        <div class="right-panel">
+        <form method="post" class="w-100">
+            @csrf
             <div class="form-login">
                 <img src="{{ asset('/assets/images/logo.png') }}" alt="image-logo">
                 <p class="title mb-2">FORM LOGIN ADMIN</p>
@@ -49,7 +63,7 @@
                     <button type="submit" class="btn-login">Login</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 

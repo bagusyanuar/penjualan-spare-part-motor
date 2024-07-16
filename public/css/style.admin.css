@@ -36,7 +36,7 @@
 .card-login-form {
     width: 300px;
     height: 280px;
-    padding: 1.75rem 2rem;
+    padding: 0.75rem 2rem;
     background-color: white;
     border-radius: var(--card-border);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
@@ -56,8 +56,8 @@
 }
 
 .form-login img {
-    width: 100px;
-    height: auto;
+    width: auto;
+    height: 65px;
     object-fit: cover;
     object-position: center center;
 }
