@@ -283,6 +283,24 @@ table.dataTable td.dt-control:before {
     vertical-align: middle !important;
 }
 
+.box-product-image {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.box-product-image img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3px;
+}
+
 /*.product-list-container {*/
 /*    width: 100%;*/
 /*    min-height: 400px;*/

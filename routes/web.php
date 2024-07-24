@@ -14,11 +14,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Customer\HomeController::class, 'index'])->name('customer.home');
+Route::match(['post', 'get'],'/login', [\App\Http\Controllers\Customer\LoginController::class, 'login'])->name('customer.login');
+Route::get('/logout', [\App\Http\Controllers\Customer\LoginController::class, 'logout'])->name('customer.logout');
+Route::match(['post', 'get'],'/register', [\App\Http\Controllers\Customer\RegisterController::class, 'register'])->name('customer.register');
+
+Route::group(['prefix' => 'akun-saya'], function () {
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\AkunController::class, 'index'])->name('customer.account');
+});
+
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/', [\App\Http\Controllers\Customer\ProductController::class, 'index'])->name('customer.product');
+    Route::get('/{id}', [\App\Http\Controllers\Customer\ProductController::class, 'detail'])->name('customer.product.detail');
+});
+
+Route::group(['prefix' => 'keranjang'], function () {
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\KeranjangController::class, 'index'])->name('customer.cart');
+    Route::post('/checkout', [\App\Http\Controllers\Customer\KeranjangController::class, 'checkout'])->name('customer.checkout');
+    Route::post('/{id}/delete', [\App\Http\Controllers\Customer\KeranjangController::class, 'delete'])->name('customer.delete');
+
+});
 
 Route::group(['prefix' => 'admin'], function () {
 //    Route::match(['post', 'get'],'/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
-    Route::get( '/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
+    Route::get('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
