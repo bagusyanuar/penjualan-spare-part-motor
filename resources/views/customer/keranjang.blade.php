@@ -65,8 +65,8 @@
                         </td>
                         <td class="middle-header">{{ $cart->product->nama }}</td>
                         <td class="middle-header text-center">{{ $cart->qty }}</td>
-                        <td class="middle-header text-center">{{ $cart->harga }}</td>
-                        <td class="middle-header text-center">{{ $cart->total }}</td>
+                        <td class="middle-header text-end">{{ number_format($cart->harga, 0, ',', '.') }}</td>
+                        <td class="middle-header text-end">{{ number_format($cart->total, 0, ',', '.') }}</td>
                         <td class="middle-header text-center">
                             <div class="w-100 d-flex justify-content-center align-items-center gap-1">
                                 <a href="#" class="btn-table-action-delete" data-id="{{ $cart->id }}"><i
@@ -78,41 +78,44 @@
                 </tbody>
             </table>
         </div>
-
-        {{--        <div class="cart-list-container">--}}
-        {{--            --}}{{--            <p style="font-size: 0.8em; font-weight: bold; color: var(--dark);">Daftar Belanja</p>--}}
-        {{--            @forelse($carts as $cart)--}}
-        {{--                <div class="cart-item-container mb-3">--}}
-        {{--                    <img src="{{ $cart->product->gambar }}" alt="product-image">--}}
-        {{--                    <div class="flex-grow-1">--}}
-        {{--                        <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">{{ $cart->product->nama }}</p>--}}
-        {{--                        <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">{{ $cart->product->category->nama }}</p>--}}
-        {{--                        <div class="d-flex align-items-center" style="font-size: 0.8em;">--}}
-        {{--                            <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>--}}
-        {{--                            <span style="color: var(--dark); font-weight: bold;">{{ $cart->qty }}X (Rp.{{ number_format($cart->harga, 0, ',' ,'.') }})</span>--}}
-        {{--                        </div>--}}
-        {{--                        <div class="d-flex justify-content-start w-100">--}}
-        {{--                            <a href="#" class="btn-delete-item" data-id="{{ $cart->id }}">--}}
-        {{--                                <i class='bx bx-trash'></i>--}}
-        {{--                            </a>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="d-flex justify-content-end" style="width: 150px;">--}}
-        {{--                        <p style="font-size: 1em; font-weight: bold; color: var(--dark);">--}}
-        {{--                            Rp{{ number_format($cart->total, 0, ',' ,'.') }}</p>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            @empty--}}
-        {{--                <div class="w-100 d-flex justify-content-center align-items-center flex-column"--}}
-        {{--                     style="background-color: white; border-radius: 12px; box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); padding: 1rem 1.5rem; min-height: 495px; ">--}}
-        {{--                    <p style="margin-bottom: 1rem; font-weight: bold;">Belum Ada Data Belanja...</p>--}}
-        {{--                    <a href="{{ route('customer.product') }}" class="btn-action-primary" style="width: fit-content">Pergi--}}
-        {{--                        Belanja</a>--}}
-        {{--                </div>--}}
-        {{--            @endforelse--}}
-        {{--        </div>--}}
-        <div class="cart-action-container">
+        <div class="cart-action-container" style="width: 500px;">
             <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Ringkasan Belanja</p>
+            <hr class="custom-divider"/>
+            <div class="w-100">
+                <span class="input-label">Metode Pembelian</span>
+                <div class="mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input buying-method" type="radio" name="buying-method"
+                               id="cash"
+                               value="cash" checked>
+                        <label class="form-check-label" for="cash" style="font-size: 0.8em; color: var(--dark);">
+                            Tunai
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input buying-method" type="radio" name="buying-method" id="credit"
+                               value="credit">
+                        <label class="form-check-label" for="credit" style="font-size: 0.8em; color: var(--dark);">
+                            Kredit
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 d-none" id="panel-buying-method">
+                <hr class="custom-divider"/>
+                <div class="w-100 mb-1">
+                    <label for="interest" class="form-label input-label">Jangka Waktu</label>
+                    <select id="interest" name="interest" class="text-input">
+                        @foreach($interests as $interest)
+                            <option value="{{ $interest->id }}"
+                                    data-price="{{ $interest->bunga }}"
+                                    data-count="{{ $interest->jangka_waktu }}">{{ $interest->jangka_waktu }} minggu
+                                ({{ $interest->bunga }}%)
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <hr class="custom-divider"/>
             <div class="w-100">
                 <span class="input-label">Metode Pengiriman</span>
@@ -161,10 +164,23 @@
                 <span id="lbl-sub-total"
                       style="color: var(--dark); font-weight: 600;">Rp{{ number_format($subTotal, 0, ',', '.') }}</span>
             </div>
+            <div class="d-flex align-items-center justify-content-between mb-1 d-none" id="panel-interest"
+                 style="font-size: 1em;">
+                <span style="color: var(--dark-tint); font-size: 0.8em">Bunga</span>
+                <span id="lbl-interest"
+                      style="color: var(--dark); font-weight: 600;">Rp0</span>
+            </div>
             <div class="d-flex align-items-center justify-content-between mb-3" style="font-size: 1em;">
                 <span style="color: var(--dark-tint); font-size: 0.8em">Biaya Pengiriman</span>
                 <span id="lbl-shipment"
                       style="color: var(--dark); font-weight: 600;">Rp{{ number_format($totalShipment, 0, ',', '.') }}</span>
+            </div>
+            <div class="w-100 mb-3 d-none" id="panel-dp">
+                <hr class="custom-divider"/>
+                <label for="dp" class="form-label input-label">DP</label>
+                <input type="number" value="0" class="text-input"
+                       id="dp"
+                       name="dp">
             </div>
             <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
                 <span style="color: var(--dark-tint); font-size: 0.8em">Total</span>
@@ -183,11 +199,16 @@
         var path = '/{{request()->path()}}';
         var strSubTotal = '{{ $subTotal }}';
         var strShipment = '{{ $totalShipment }}';
+        var strTotalInterest = '0';
 
         function generateTotal() {
             let intSubtotal = parseInt(strSubTotal);
             let intShipment = parseInt(strShipment);
-            let total = intSubtotal + intShipment;
+            let intInterest = parseInt(strTotalInterest);
+            let tmpTotalInterest = (intInterest / 100) * intSubtotal;
+            let totalInterest = Math.round(tmpTotalInterest);
+            let intDP = $('#dp').val() === '' ? 0 : parseInt($('#dp').val());
+            let total = intSubtotal + intShipment + totalInterest - intDP;
             $('#lbl-total').html('Rp.' + total.toLocaleString('id-ID'));
         }
 
@@ -198,6 +219,19 @@
                 generateTotal();
             })
         }
+
+        function eventChangeInterest() {
+            $('#interest').on('change', function (e) {
+                strTotalInterest = $(this).find('option:selected').attr('data-price');
+                let intSubtotal = parseInt(strSubTotal);
+                let intInterest = parseInt(strTotalInterest);
+                let tmpTotalInterest = (intInterest / 100) * intSubtotal;
+                let totalInterest = Math.round(tmpTotalInterest);
+                $('#lbl-interest').html('Rp.' + totalInterest.toLocaleString('id-ID'));
+                generateTotal();
+            })
+        }
+
 
         function eventDeleteCart() {
             $('.btn-delete-item').on('click', function (e) {
@@ -216,6 +250,7 @@
             })
         }
 
+
         function changeShippingMethodHandler() {
             let val = $('input[name=shipping-method]:checked').val();
             let elPanelShipping = $('#panel-shipping');
@@ -228,6 +263,40 @@
                 elPanelShipping.removeClass('d-none');
                 strShipment = $('#shipment').find('option:selected').attr('data-price');
                 $('#lbl-shipment').html('Rp.' + parseInt(strShipment).toLocaleString('id-ID'));
+                generateTotal();
+            }
+        }
+
+        function eventChangeBuyingMethod() {
+            $('.buying-method').on('change', function () {
+                changeBuyingMethodHandler();
+            })
+        }
+
+        function changeBuyingMethodHandler() {
+            let val = $('input[name=buying-method]:checked').val();
+            let elPanelInterest = $('#panel-interest');
+            let elPanelBuyingMethod = $('#panel-buying-method');
+            let elPanelDP = $('#panel-dp');
+            if (val === 'cash') {
+                elPanelInterest.addClass('d-none');
+                elPanelBuyingMethod.addClass('d-none');
+                elPanelBuyingMethod.addClass('d-none');
+                strTotalInterest = '0';
+                $('#dp').val(0)
+                $('#lbl-interest').html('Rp.0');
+                generateTotal();
+            } else {
+                elPanelInterest.removeClass('d-none');
+                elPanelBuyingMethod.removeClass('d-none');
+                elPanelDP.removeClass('d-none');
+                strTotalInterest = $('#interest').find('option:selected').attr('data-price');
+                let intSubtotal = parseInt(strSubTotal);
+                let intInterest = parseInt(strTotalInterest);
+                let tmpTotalInterest = (intInterest / 100) * intSubtotal;
+                let totalInterest = Math.round(tmpTotalInterest);
+                $('#dp').val(0)
+                $('#lbl-interest').html('Rp.' + totalInterest.toLocaleString('id-ID'));
                 generateTotal();
             }
         }
@@ -246,11 +315,24 @@
                 let shippingMethod = $('input[name=shipping-method]:checked').val();
                 let destination = $('#shipment').val();
                 let address = $('#address').val();
+                let buyingMethod = $('input[name=buying-method]:checked').val();
+                let dp = $('#dp').val();
+
+                let intSubtotal = parseInt(strSubTotal);
+                let intInterest = parseInt(strTotalInterest);
+                let tmpTotalInterest = (intInterest / 100) * intSubtotal;
+                let totalInterest = Math.round(tmpTotalInterest);
+
+                let countInterest = $('#interest').find('option:selected').attr('data-count');
                 blockLoading(true);
                 let response = await $.post(url, {
                     shipping_method: shippingMethod,
                     destination: destination,
-                    address: address
+                    address: address,
+                    buying_method: buyingMethod,
+                    interest: totalInterest,
+                    dp: dp,
+                    count_interest: countInterest,
                 });
                 let id = response['data'];
                 blockLoading(false);
@@ -285,13 +367,24 @@
             });
         }
 
+        async function eventTypeDP() {
+            $("#dp").keyup(
+                debounce(function (e) {
+                    generateTotal();
+                }, 500)
+            );
+        }
+
         $(document).ready(function () {
             eventChangeShippingMethod();
+            eventChangeBuyingMethod();
             generateTotal();
             eventChangeShipment();
+            eventChangeInterest();
             eventDeleteCart();
             eventCheckout();
             generateTable();
+            eventTypeDP();
         })
     </script>
 @endsection

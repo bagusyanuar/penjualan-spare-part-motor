@@ -29,4 +29,15 @@ class Penjualan extends Model
         'alamat',
         'kredit'
     ];
+
+    public function pembayaran_status()
+    {
+        return $this->hasOne(Pembayaran::class, 'penjualan_id')->orderBy('created_at', 'DESC');
+    }
+
+    public function pembayaran_token()
+    {
+        return $this->hasOne(Pembayaran::class, 'penjualan_id')->whereNull('angsuran_id')
+            ->orderBy('created_at', 'ASC');
+    }
 }

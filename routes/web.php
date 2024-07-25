@@ -34,8 +34,14 @@ Route::group(['prefix' => 'keranjang'], function () {
 
 });
 
+Route::group(['prefix' => 'pesanan'], function () {
+    Route::get('/', [\App\Http\Controllers\Customer\PesananController::class, 'index'])->name('customer.order');
+    Route::match(['post', 'get'],'/{id}', [\App\Http\Controllers\Customer\PesananController::class, 'detail'])->name('customer.order.detail');
+    Route::match(['post', 'get'], '/{id}/pembayaran', [\App\Http\Controllers\Customer\PesananController::class, 'pembayaran'])->name('customer.order.payment');
+});
+
 Route::group(['prefix' => 'admin'], function () {
-//    Route::match(['post', 'get'],'/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
+    Route::match(['post', 'get'],'/check-midtrans', [App\Http\Controllers\Midtrans\CheckController::class, 'index']);
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
     Route::get('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
@@ -60,6 +66,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
         Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('admin.product.delete');
+    });
+
+    Route::group(['prefix' => 'biaya-pengiriman'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BiayaPengirimanController::class, 'index'])->name('admin.shipment');
+        Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\BiayaPengirimanController::class, 'add'])->name('admin.shipment.add');
+        Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\BiayaPengirimanController::class, 'edit'])->name('admin.shipment.edit');
+        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\BiayaPengirimanController::class, 'delete'])->name('admin.shipment.delete');
     });
 
     Route::group(['prefix' => 'setting-kredit'], function () {

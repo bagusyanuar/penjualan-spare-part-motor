@@ -23,4 +23,9 @@ class Pembayaran extends Model
         'keterangan_pembayaran',
         'snap_token'
     ];
+
+    public function penjualan()
+    {
+        return $this->belongsTo(Penjualan::class,'penjualan_id');
+    }
 }
