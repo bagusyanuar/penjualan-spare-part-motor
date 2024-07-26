@@ -30,6 +30,11 @@ class Penjualan extends Model
         'kredit'
     ];
 
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'penjualan_id');
+    }
+
     public function pembayaran_status()
     {
         return $this->hasOne(Pembayaran::class, 'penjualan_id')->orderBy('created_at', 'DESC');
@@ -39,5 +44,15 @@ class Penjualan extends Model
     {
         return $this->hasOne(Pembayaran::class, 'penjualan_id')->whereNull('angsuran_id')
             ->orderBy('created_at', 'ASC');
+    }
+
+    public function angsuran()
+    {
+        return $this->hasMany(Angsuran::class, 'penjualan_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

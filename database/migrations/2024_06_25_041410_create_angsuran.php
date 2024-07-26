@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('angsuran', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('penjualan_id')->unsigned();
-            $table->date('tanggal');
+            $table->date('tanggal')->nullable();
             $table->integer('index');
             $table->integer('total')->default(0);
             $table->timestamps();

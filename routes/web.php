@@ -38,6 +38,8 @@ Route::group(['prefix' => 'pesanan'], function () {
     Route::get('/', [\App\Http\Controllers\Customer\PesananController::class, 'index'])->name('customer.order');
     Route::match(['post', 'get'],'/{id}', [\App\Http\Controllers\Customer\PesananController::class, 'detail'])->name('customer.order.detail');
     Route::match(['post', 'get'], '/{id}/pembayaran', [\App\Http\Controllers\Customer\PesananController::class, 'pembayaran'])->name('customer.order.payment');
+    Route::post( '/{id}/angsuran/{instalmentID}', [\App\Http\Controllers\Customer\AngsuranController::class, 'getSnapToken'])->name('customer.order.payment.snap');
+    Route::post( '/{id}/angsuran/{instalmentID}/pay', [\App\Http\Controllers\Customer\AngsuranController::class, 'pay'])->name('customer.order.payment.pay');
 });
 
 Route::group(['prefix' => 'admin'], function () {
