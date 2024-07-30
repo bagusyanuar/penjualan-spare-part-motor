@@ -90,4 +90,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::match(['post', 'get'],'/{id}/selesai-packing', [\App\Http\Controllers\Admin\PenjualanController::class, 'detail_packing'])->name('admin.penjualan.detail.packing');
         Route::match(['post', 'get'],'/{id}/selesai', [\App\Http\Controllers\Admin\PenjualanController::class, 'detail_finish'])->name('admin.penjualan.detail.finish');
     });
+
+    Route::group(['prefix' => 'angsuran'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\AngsuranController::class, 'index'])->name('admin.angsuran');
+        Route::get('/{id}', [\App\Http\Controllers\Admin\AngsuranController::class, 'detail'])->name('admin.angsuran.detail');
+    });
 });

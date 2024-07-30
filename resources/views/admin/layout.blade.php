@@ -99,6 +99,13 @@
                         <p>Penjualan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.angsuran') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/angsuran*') ? 'active' : '' }}">
+                        <i class='bx bx-credit-card'></i>
+                        <p>Angsuran</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -34,7 +34,7 @@ class AngsuranController extends CustomController
             $customer = $instalment->penjualan->user;
             $payload = [
                 'transaction_details' => [
-                    'order_id'     => $instalment->id,
+                    'order_id'     => 'angsuran-'.$instalmentID,
                     'gross_amount' => $instalment->total,
                 ],
                 'customer_details' => [
