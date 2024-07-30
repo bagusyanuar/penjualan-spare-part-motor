@@ -83,4 +83,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\SettingKreditController::class, 'edit'])->name('admin.setting-kredit.edit');
         Route::post('/{id}/delete', [\App\Http\Controllers\Admin\SettingKreditController::class, 'delete'])->name('admin.setting-kredit.delete');
     });
+
+    Route::group(['prefix' => 'penjualan'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PenjualanController::class, 'index'])->name('admin.penjualan');
+        Route::match(['post', 'get'],'/{id}/pesanan-baru', [\App\Http\Controllers\Admin\PenjualanController::class, 'detail_process'])->name('admin.penjualan.detail.new');
+        Route::match(['post', 'get'],'/{id}/selesai-packing', [\App\Http\Controllers\Admin\PenjualanController::class, 'detail_packing'])->name('admin.penjualan.detail.packing');
+        Route::match(['post', 'get'],'/{id}/selesai', [\App\Http\Controllers\Admin\PenjualanController::class, 'detail_finish'])->name('admin.penjualan.detail.finish');
+    });
 });

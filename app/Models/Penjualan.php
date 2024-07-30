@@ -30,6 +30,8 @@ class Penjualan extends Model
         'kredit'
     ];
 
+    // status
+    //0: menunggu pembayaran 1: barang di packing 2: barang siap di ambil 3: barang di kirim 4: selesai
     public function keranjang()
     {
         return $this->hasMany(Keranjang::class, 'penjualan_id');
