@@ -106,6 +106,20 @@
                         <p>Angsuran</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.laporan.penjualan') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/laporan-penjualan*') ? 'active' : '' }}">
+                        <i class='bx bxs-report'></i>
+                        <p>Laporan Penjualan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.laporan.angsuran') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/laporan-angsuran*') ? 'active' : '' }}">
+                        <i class='bx bxs-report'></i>
+                        <p>Laporan Angsuran</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

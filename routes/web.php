@@ -95,4 +95,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\AngsuranController::class, 'index'])->name('admin.angsuran');
         Route::get('/{id}', [\App\Http\Controllers\Admin\AngsuranController::class, 'detail'])->name('admin.angsuran.detail');
     });
+
+    Route::group(['prefix' => 'laporan-penjualan'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\LaporanController::class, 'index'])->name('admin.laporan.penjualan');
+        Route::get('/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'penjualan_pdf'])->name('admin.laporan.penjualan.cetak');
+    });
+
+    Route::group(['prefix' => 'laporan-angsuran'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\LaporanController::class, 'angsuran'])->name('admin.laporan.angsuran');
+        Route::get('/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'angsuran_pdf'])->name('admin.laporan.angsuran.cetak');
+    });
 });
